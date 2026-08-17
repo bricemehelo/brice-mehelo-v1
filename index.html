@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brice Dimitri Mehelo — Senior Full Stack Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --navy: #0a1628;
+        --navy-mid: #0f2040;
+        --navy-light: #1a3358;
+        --teal: #00c9a7;
+        --teal-dim: #00a88c;
+        --teal-glow: rgba(0, 201, 167, 0.12);
+        --white: #f0f4ff;
+        --gray-100: #c8d4e8;
+        --gray-200: #8a9bbe;
+        --gray-300: #4a5f82;
+        --gold: #f5a623;
+        --card-bg: rgba(26, 51, 88, 0.5);
+        --border: rgba(0, 201, 167, 0.2);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--navy);
+        color: var(--white);
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 2rem;
+        background: rgba(10, 22, 40, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        color: var(--teal);
+        letter-spacing: 0.05em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--gray-100);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--teal);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 8rem 2rem 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 201, 167, 0.08) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        left: -100px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 201, 167, 0.05) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .hero-eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+        color: var(--teal);
+        letter-spacing: 0.1em;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 32px;
+        height: 1px;
+        background: var(--teal);
+      }
+      .hero-name {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+        color: var(--white);
+      }
+      .hero-name span {
+        color: var(--teal);
+      }
+      .hero-terminal {
+        font-family: "JetBrains Mono", monospace;
+        font-size: clamp(1rem, 2.5vw, 1.35rem);
+        color: var(--gray-100);
+        margin-bottom: 2rem;
+        min-height: 2em;
+      }
+      .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.2em;
+        background: var(--teal);
+        vertical-align: middle;
+        margin-left: 2px;
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+      .hero-desc {
+        font-size: 1.05rem;
+        color: var(--gray-200);
+        max-width: 580px;
+        margin-bottom: 2.5rem;
+        line-height: 1.8;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.75rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s;
+        letter-spacing: 0.02em;
+      }
+      .btn-primary {
+        background: var(--teal);
+        color: var(--navy);
+      }
+      .btn-primary:hover {
+        background: var(--teal-dim);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(0, 201, 167, 0.3);
+      }
+      .btn-outline {
+        border: 1px solid var(--border);
+        color: var(--gray-100);
+        background: transparent;
+      }
+      .btn-outline:hover {
+        border-color: var(--teal);
+        color: var(--teal);
+        transform: translateY(-1px);
+      }
+
+      /* ── SECTIONS ── */
+      section {
+        padding: 5rem 2rem;
+      }
+      .section-inner {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+      .section-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--teal);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .section-title {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 3rem;
+        color: var(--white);
+      }
+      .divider {
+        width: 48px;
+        height: 2px;
+        background: var(--teal);
+        margin-bottom: 1rem;
+      }
+
+      /* ── ABOUT ── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+      .about-text p {
+        color: var(--gray-200);
+        line-height: 1.85;
+        margin-bottom: 1.25rem;
+      }
+      .about-text p strong {
+        color: var(--white);
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .stat-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.5rem;
+        transition: border-color 0.2s;
+      }
+      .stat-card:hover {
+        border-color: var(--teal);
+      }
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--teal);
+        line-height: 1;
+        margin-bottom: 0.25rem;
+      }
+      .stat-label {
+        font-size: 0.8rem;
+        color: var(--gray-200);
+        letter-spacing: 0.03em;
+      }
+
+      /* ── STACK ── */
+      .stack-section {
+        background: var(--navy-mid);
+      }
+      .stack-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0.75rem;
+      }
+      .stack-item {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--gray-100);
+        transition: all 0.2s;
+      }
+      .stack-item:hover {
+        border-color: var(--teal);
+        color: var(--teal);
+        transform: translateY(-2px);
+      }
+      .stack-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--teal);
+        flex-shrink: 0;
+      }
+
+      /* ── PROJECTS ── */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .project-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 2rem;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--teal), transparent);
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+      .project-card:hover {
+        border-color: var(--teal);
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+      }
+      .project-card:hover::before {
+        opacity: 1;
+      }
+      .project-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--teal);
+        background: var(--teal-glow);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 0.25rem 0.75rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.05em;
+      }
+      .live-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--teal);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.3);
+        }
+      }
+      .project-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.01em;
+      }
+      .project-desc {
+        font-size: 0.88rem;
+        color: var(--gray-200);
+        line-height: 1.75;
+        margin-bottom: 1.25rem;
+      }
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 1.5rem;
+      }
+      .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--gray-200);
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        padding: 0.2rem 0.6rem;
+      }
+      .project-links {
+        display: flex;
+        gap: 1rem;
+      }
+      .project-link {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--teal);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: opacity 0.2s;
+      }
+      .project-link:hover {
+        opacity: 0.75;
+      }
+      .project-link.muted {
+        color: var(--gray-300);
+        font-style: italic;
+      }
+
+      /* ── EXPERIENCE ── */
+      .exp-section {
+        background: var(--navy-mid);
+      }
+      .timeline {
+        position: relative;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 16px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(to bottom, var(--teal), transparent);
+      }
+      .exp-item {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        position: relative;
+      }
+      .exp-dot {
+        width: 33px;
+        height: 33px;
+        border-radius: 50%;
+        background: var(--navy-mid);
+        border: 2px solid var(--teal);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+      }
+      .exp-dot-inner {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--teal);
+      }
+      .exp-content {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.5rem;
+        flex: 1;
+        transition: border-color 0.2s;
+      }
+      .exp-content:hover {
+        border-color: var(--teal);
+      }
+      .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .exp-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--white);
+      }
+      .exp-company {
+        font-size: 0.85rem;
+        color: var(--teal);
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+      }
+      .exp-period {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--gray-300);
+        white-space: nowrap;
+      }
+      .exp-desc {
+        font-size: 0.85rem;
+        color: var(--gray-200);
+        line-height: 1.75;
+      }
+      .exp-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.75rem;
+      }
+      .exp-badge {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        background: var(--teal-glow);
+        color: var(--teal);
+        border: 1px solid rgba(0, 201, 167, 0.3);
+      }
+
+      /* ── IMPACT ── */
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .impact-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1.75rem;
+        text-align: center;
+        transition: all 0.2s;
+      }
+      .impact-card:hover {
+        border-color: var(--teal);
+        transform: translateY(-2px);
+      }
+      .impact-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+      }
+      .impact-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 0.5rem;
+      }
+      .impact-desc {
+        font-size: 0.82rem;
+        color: var(--gray-200);
+        line-height: 1.65;
+      }
+
+      /* ── CONTACT ── */
+      .contact-section {
+        text-align: center;
+      }
+      .contact-inner {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .contact-desc {
+        font-size: 1rem;
+        color: var(--gray-200);
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+      }
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2rem;
+        text-align: center;
+      }
+      .footer-text {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--gray-300);
+      }
+      .footer-text span {
+        color: var(--teal);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 768px) {
+        nav {
+          padding: 1rem;
+        }
+        .nav-links {
+          gap: 1.25rem;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .impact-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .cursor {
+          animation: none;
+        }
+        .live-dot {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">brice.mehelo()</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">Available for senior opportunities</div>
+        <h1 class="hero-name">Brice Dimitri<br /><span>Mehelo</span></h1>
+        <div class="hero-terminal" id="terminal">
+          <span class="cursor"></span>
+        </div>
+        <p class="hero-desc">
+          Senior Full Stack Engineer and SaaS Founder building scalable systems
+          that solve real operational problems for businesses across Africa and
+          beyond. 10+ years shipping production software. Based in Lagos,
+          Nigeria.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View my work</a>
+          <a href="mailto:dimitrimehelo@gmail.com" class="btn btn-outline"
+            >Get in touch</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-inner">
+        <div class="section-label">// about</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Engineer. Founder. Builder.</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              I am a Senior Full Stack Engineer with over
+              <strong>9 years of production experience</strong>
+              designing and building scalable software systems. I have led IT
+              operations at an
+              <strong>ISO 9001 certified laboratory</strong>, shipped
+              cloud-deployed applications for an Irish NGO serving users across
+              Europe, and founded two technology companies in Africa.
+            </p>
+            <p>
+              My work sits at the intersection of
+              <strong
+                >software engineering, system architecture, and digital
+                transformation</strong
+              >. I build software that solves real business problems — not
+              demos, not prototypes, but production systems with real users and
+              real revenue.
+            </p>
+            <p>
+              Currently deepening my expertise in
+              <strong>AI engineering and MLOps</strong> through the AWS AI and
+              ML Scholarship Programme (Udacity) and a Kubernetes certification
+              (Andela). Actively building toward roles as
+              <strong>Solution Architect</strong> and
+              <strong>Fractional CTO</strong>.
+            </p>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">9+</div>
+              <div class="stat-label">Years in production engineering</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">ISO</div>
+              <div class="stat-label">9001 certified environment</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">2</div>
+              <div class="stat-label">Live SaaS products founded</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">🌍</div>
+              <div class="stat-label">Clients across Africa & Europe</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="stack-section">
+      <div class="section-inner">
+        <div class="section-label">// stack</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Technologies I work with</h2>
+        <div class="stack-grid">
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            Laravel / PHP
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            Vue 3
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            React
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            Node.js
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            TypeScript
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            Python / Flask
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            PostgreSQL
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            MySQL
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            Docker
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            Kubernetes
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            Microsoft Azure
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            AWS
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            CI/CD Pipelines
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            REST APIs
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            Git / Bitbucket
+          </div>
+          <div class="stack-item">
+            <div class="stack-dot"></div>
+            AI / ML (AWS)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-inner">
+        <div class="section-label">// projects</div>
+        <div class="divider"></div>
+        <h2 class="section-title">What I have built</h2>
+        <div class="projects-grid">
+          <!-- iHub Connect -->
+          <div class="project-card">
+            <div class="project-badge">
+              <div class="live-dot"></div>
+              LIVE IN PRODUCTION
+            </div>
+            <div class="project-title">iHub Connect</div>
+            <p class="project-desc">
+              A multi-tenant SaaS platform built from zero to serve African
+              small and medium businesses. Covers CRM, finance tracking, task
+              management, internal communication, team attendance, document
+              management, and role-based permissions. Real paying customers with
+              recurring monthly revenue.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Laravel</span>
+              <span class="tag">Vue 3</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Multi-tenant</span>
+              <span class="tag">SaaS</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://ihubconnect.com"
+                target="_blank"
+                rel="noopener"
+                class="project-link"
+              >
+                ↗ Live platform
+              </a>
+              <a
+                href="https://github.com/bricemehelo"
+                target="_blank"
+                rel="noopener"
+                class="project-link"
+              >
+                ↗ GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Nestio -->
+          <div class="project-card">
+            <div class="project-badge">🔧 IN DEVELOPMENT</div>
+            <div class="project-title">Nestio</div>
+            <p class="project-desc">
+              A property listing and management platform with interactive
+              map-based search, built for the African real estate market.
+              Features geospatial search powered by MapLibre, a FastAPI backend,
+              and TypeScript frontend. Deployed on AWS EC2.
+            </p>
+            <div class="project-tags">
+              <span class="tag">FastAPI</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">MapLibre</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">AWS EC2</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/bricemehelo/nestio"
+                target="_blank"
+                rel="noopener"
+                class="project-link"
+              >
+                ↗ GitHub
+              </a>
+              <span class="project-link muted">Live URL coming soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="exp-section">
+      <div class="section-inner">
+        <div class="section-label">// experience</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Professional background</h2>
+        <div class="timeline">
+          <div class="exp-item">
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+            <div class="exp-content">
+              <div class="exp-header">
+                <div>
+                  <div class="exp-title">Full Stack Developer</div>
+                  <div class="exp-company">
+                    FoodCloud — Dublin, Ireland (Remote)
+                  </div>
+                </div>
+                <div class="exp-period">2023 — 2025</div>
+              </div>
+              <p class="exp-desc">
+                Developed Foodiverse — a cloud application deployed on Microsoft
+                Azure serving food redistribution networks across multiple
+                European countries. Built Vue.js frontends, Laravel APIs,
+                integrated Auth0 authentication, and managed Docker deployments
+                through Azure DevOps CI/CD pipelines.
+              </p>
+              <div class="exp-badges">
+                <span class="exp-badge">Azure</span>
+                <span class="exp-badge">Laravel</span>
+                <span class="exp-badge">Vue.js</span>
+                <span class="exp-badge">Docker</span>
+                <span class="exp-badge">Auth0</span>
+                <span class="exp-badge">CI/CD</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+            <div class="exp-content">
+              <div class="exp-header">
+                <div>
+                  <div class="exp-title">IT Manager → IT Consultant</div>
+                  <div class="exp-company">
+                    Mudiame International Limited — Nigeria
+                  </div>
+                </div>
+                <div class="exp-period">2012 — Present</div>
+              </div>
+              <p class="exp-desc">
+                Led all IT operations at an ISO 9001 certified testing and
+                calibration laboratory. Established formal IT policies,
+                procedures, and governance frameworks. Designed and implemented
+                custom intranet systems covering inventory management, payroll,
+                procurement, CRM, and reporting. Transitioned to consulting role
+                in 2023.
+              </p>
+              <div class="exp-badges">
+                <span class="exp-badge">ISO 9001</span>
+                <span class="exp-badge">IT Governance</span>
+                <span class="exp-badge">Laravel</span>
+                <span class="exp-badge">MySQL</span>
+                <span class="exp-badge">ERP Systems</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-dot"><div class="exp-dot-inner"></div></div>
+            <div class="exp-content">
+              <div class="exp-header">
+                <div>
+                  <div class="exp-title">Founder & Lead Engineer</div>
+                  <div class="exp-company">iZone5 Limited — Nigeria</div>
+                </div>
+                <div class="exp-period">2013 — Present</div>
+              </div>
+              <p class="exp-desc">
+                Founded and lead iZone5 — a technology organisation running
+                software engineering internship programmes and STEM education
+                initiatives for young people in Nigeria. Built and operate iHub
+                Connect as the organisation's flagship product. Mentor junior
+                engineers and deliver software solutions for businesses and
+                NGOs.
+              </p>
+              <div class="exp-badges">
+                <span class="exp-badge">Founder</span>
+                <span class="exp-badge">Team Leadership</span>
+                <span class="exp-badge">Mentorship</span>
+                <span class="exp-badge">STEM Education</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="impact">
+      <div class="section-inner">
+        <div class="section-label">// community</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Beyond the code</h2>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-icon">🌍</div>
+            <div class="impact-title">iZone5 Limited</div>
+            <p class="impact-desc">
+              Software engineering internship programmes and STEM education
+              initiatives for young people in Nigeria since 2013.
+            </p>
+          </div>
+          <div class="impact-card">
+            <div class="impact-icon">🤝</div>
+            <div class="impact-title">G. Quivers Foundation</div>
+            <p class="impact-desc">
+              NGO focused on technology mentorship and leadership development
+              for youth across Nigeria and Cameroon.
+            </p>
+          </div>
+          <div class="impact-card">
+            <div class="impact-icon">🎓</div>
+            <div class="impact-title">Andela Community</div>
+            <p class="impact-desc">
+              Mentored junior and mid-level engineers through the Andela
+              Learning Community, contributing to measurable career progression.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <div class="section-inner contact-inner">
+        <div class="section-label">// contact</div>
+        <div class="divider" style="margin: 0 auto 1rem"></div>
+        <h2 class="section-title">Let's work together</h2>
+        <p class="contact-desc">
+          I am open to senior engineering roles, solution architecture
+          positions, and consulting opportunities — particularly in Europe,
+          Canada, and remotely. If you are building something ambitious, I'd
+          like to hear about it.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:dimitrimehelo@gmail.com" class="btn btn-primary">
+            ✉ Send an email
+          </a>
+          <a
+            href="https://www.linkedin.com/in/brice-mehelo/"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-outline"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/bricemehelo"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-outline"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="footer-text">
+        Designed and built by <span>Brice Dimitri Mehelo</span> · Lagos, Nigeria
+        · 2026
+      </p>
+    </footer>
+
+    <script>
+      // Typewriter effect
+      const lines = [
+        "Senior Full Stack Engineer",
+        "SaaS Founder & Architect",
+        "Building for Africa & beyond",
+      ];
+      let lineIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+      const el = document.getElementById("terminal");
+
+      function type() {
+        const current = lines[lineIndex];
+        if (!deleting) {
+          charIndex++;
+          el.innerHTML =
+            current.slice(0, charIndex) + '<span class="cursor"></span>';
+          if (charIndex === current.length) {
+            deleting = true;
+            setTimeout(type, 2200);
+            return;
+          }
+        } else {
+          charIndex--;
+          el.innerHTML =
+            current.slice(0, charIndex) + '<span class="cursor"></span>';
+          if (charIndex === 0) {
+            deleting = false;
+            lineIndex = (lineIndex + 1) % lines.length;
+          }
+        }
+        setTimeout(type, deleting ? 40 : 70);
+      }
+      type();
+
+      // Smooth scroll for nav
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          document
+            .querySelector(a.getAttribute("href"))
+            ?.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
+</html>
