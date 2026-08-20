@@ -67,6 +67,7 @@
         font-size: 0.9rem;
         color: var(--teal);
         letter-spacing: 0.05em;
+        z-index: 101;
       }
       .nav-links {
         display: flex;
@@ -83,6 +84,63 @@
       }
       .nav-links a:hover {
         color: var(--teal);
+      }
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 101;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--teal);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      .nav-toggle.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav-toggle.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      @media (max-width: 768px) {
+        .nav-toggle {
+          display: flex;
+        }
+        .nav-links {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(10, 22, 40, 0.98);
+          backdrop-filter: blur(16px);
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 2.5rem;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s;
+          z-index: 100;
+        }
+        .nav-links.open {
+          opacity: 1;
+          pointer-events: all;
+        }
+        .nav-links a {
+          font-size: 1.25rem;
+          font-weight: 600;
+        }
       }
 
       /* ── HERO ── */
@@ -696,7 +754,124 @@
         line-height: 1.65;
       }
 
-      /* ── CONTACT ── */
+      /* ── CONTENT SECTION ── */
+      .content-section {
+        background: var(--navy-mid);
+      }
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .content-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 2rem;
+        text-decoration: none;
+        display: block;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .content-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+      .content-card.linkedin::before {
+        background: #0077b5;
+      }
+      .content-card.blog::before {
+        background: var(--teal);
+      }
+      .content-card.youtube::before {
+        background: #ff0000;
+      }
+      .content-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+      }
+      .content-card.linkedin:hover {
+        border-color: #0077b5;
+      }
+      .content-card.blog:hover {
+        border-color: var(--teal);
+      }
+      .content-card.youtube:hover {
+        border-color: #ff0000;
+      }
+      .content-card:hover::before {
+        opacity: 1;
+      }
+      .content-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.25rem;
+        font-size: 1.3rem;
+      }
+      .content-card.linkedin .content-icon {
+        background: rgba(0, 119, 181, 0.15);
+      }
+      .content-card.blog .content-icon {
+        background: var(--teal-glow);
+      }
+      .content-card.youtube .content-icon {
+        background: rgba(255, 0, 0, 0.1);
+      }
+      .content-platform {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+      }
+      .content-card.linkedin .content-platform {
+        color: #0077b5;
+      }
+      .content-card.blog .content-platform {
+        color: var(--teal);
+      }
+      .content-card.youtube .content-platform {
+        color: #ff0000;
+      }
+      .content-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--white);
+        margin-bottom: 0.5rem;
+      }
+      .content-desc {
+        font-size: 0.82rem;
+        color: var(--gray-200);
+        line-height: 1.65;
+        margin-bottom: 1.25rem;
+      }
+      .content-link-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--gray-300);
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: color 0.2s;
+      }
+      .content-card:hover .content-link-label {
+        color: var(--white);
+      }
+      @media (max-width: 768px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
       .contact-section {
         text-align: center;
       }
@@ -769,10 +944,14 @@
     <!-- NAV -->
     <nav>
       <div class="nav-logo">brice.mehelo()</div>
-      <ul class="nav-links">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#content">Content</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -782,7 +961,7 @@
       <div class="hero-inner">
         <div class="hero-photo-wrap">
           <div class="hero-photo">
-            <img src="images/brice-mehelo.jpeg" alt="Brice Dimitri Mehelo" />
+            <!-- REPLACE with: <img src="photo.jpg" alt="Brice Dimitri Mehelo" /> -->
             <div class="hero-photo-placeholder">
               <svg
                 viewBox="0 0 24 24"
@@ -1167,6 +1346,64 @@
       </div>
     </section>
 
+    <!-- CONTENT / SOCIAL -->
+    <section class="content-section" id="content">
+      <div class="section-inner">
+        <div class="section-label">// content</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Where I share my thinking</h2>
+        <div class="content-grid">
+          <a
+            href="https://www.linkedin.com/in/brice-mehelo/"
+            target="_blank"
+            rel="noopener"
+            class="content-card linkedin"
+          >
+            <div class="content-icon">💼</div>
+            <div class="content-platform">LINKEDIN</div>
+            <div class="content-title">Professional insights</div>
+            <p class="content-desc">
+              Architecture decisions, engineering lessons, SaaS building in
+              Africa, and thoughts on technology and leadership.
+            </p>
+            <div class="content-link-label">Follow on LinkedIn ↗</div>
+          </a>
+
+          <a
+            href="https://bricemehelo.com/blog"
+            target="_blank"
+            rel="noopener"
+            class="content-card blog"
+          >
+            <div class="content-icon">✍️</div>
+            <div class="content-platform">BLOG</div>
+            <div class="content-title">In-depth technical writing</div>
+            <p class="content-desc">
+              Deep dives on multi-tenant SaaS architecture, cloud deployments,
+              DevOps practices, and building software for African markets.
+            </p>
+            <div class="content-link-label">Read the blog ↗</div>
+          </a>
+
+          <a
+            href="https://youtube.com/@bricemehelo"
+            target="_blank"
+            rel="noopener"
+            class="content-card youtube"
+          >
+            <div class="content-icon">▶️</div>
+            <div class="content-platform">YOUTUBE</div>
+            <div class="content-title">Video tutorials & walkthroughs</div>
+            <p class="content-desc">
+              Code walkthroughs, architecture breakdowns, and behind-the-scenes
+              of building iHub Connect and Nestio from scratch.
+            </p>
+            <div class="content-link-label">Watch on YouTube ↗</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="contact-section">
       <div class="section-inner contact-inner">
@@ -1205,6 +1442,84 @@
 
     <!-- FOOTER -->
     <footer>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          gap: 1.5rem;
+          margin-bottom: 1rem;
+          flex-wrap: wrap;
+        "
+      >
+        <a
+          href="https://www.linkedin.com/in/brice-mehelo/"
+          target="_blank"
+          rel="noopener"
+          style="
+            font-size: 0.8rem;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.2s;
+          "
+          onmouseover="this.style.color = '#0077B5'"
+          onmouseout="this.style.color = 'var(--gray-300)'"
+          >LinkedIn</a
+        >
+        <a
+          href="https://github.com/bricemehelo"
+          target="_blank"
+          rel="noopener"
+          style="
+            font-size: 0.8rem;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.2s;
+          "
+          onmouseover="this.style.color = 'var(--teal)'"
+          onmouseout="this.style.color = 'var(--gray-300)'"
+          >GitHub</a
+        >
+        <a
+          href="https://bricemehelo.com/blog"
+          target="_blank"
+          rel="noopener"
+          style="
+            font-size: 0.8rem;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.2s;
+          "
+          onmouseover="this.style.color = 'var(--teal)'"
+          onmouseout="this.style.color = 'var(--gray-300)'"
+          >Blog</a
+        >
+        <a
+          href="https://youtube.com/@bricemehelo"
+          target="_blank"
+          rel="noopener"
+          style="
+            font-size: 0.8rem;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.2s;
+          "
+          onmouseover="this.style.color = '#FF0000'"
+          onmouseout="this.style.color = 'var(--gray-300)'"
+          >YouTube</a
+        >
+        <a
+          href="mailto:dimitrimehelo@gmail.com"
+          style="
+            font-size: 0.8rem;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.2s;
+          "
+          onmouseover="this.style.color = 'var(--teal)'"
+          onmouseout="this.style.color = 'var(--gray-300)'"
+          >Email</a
+        >
+      </div>
       <p class="footer-text">
         Designed and built by <span>Brice Dimitri Mehelo</span> · Lagos, Nigeria
         · 2026
@@ -1246,6 +1561,22 @@
         setTimeout(type, deleting ? 40 : 70);
       }
       type();
+
+      // Hamburger menu toggle
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+      navToggle.addEventListener("click", () => {
+        navToggle.classList.toggle("open");
+        navLinks.classList.toggle("open");
+      });
+
+      // Close menu when a link is clicked
+      navLinks.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          navToggle.classList.remove("open");
+          navLinks.classList.remove("open");
+        });
+      });
 
       // Smooth scroll for nav
       document.querySelectorAll('a[href^="#"]').forEach((a) => {
